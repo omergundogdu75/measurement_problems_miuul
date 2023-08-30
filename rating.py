@@ -101,3 +101,25 @@ df.loc[df["Progress"] <= 10, "Rating"].mean() * 22 / 100 + \
 df.loc[(df["Progress"] > 10) & (df["Progress"] <= 45), "Rating"].mean() * 24 / 100 + \
 df.loc[(df["Progress"] > 45) & (df["Progress"] <= 75), "Rating"].mean() * 26 / 100 + \
 df.loc[(df["Progress"] > 75), "Rating"].mean() * 28 / 100
+
+
+def user_based_weighted_average(dataframe,w1=22,w2=24,w3=26,w4=28):
+    return df.loc[df["Progress"] <= 10, "Rating"].mean() * w1 / 100 + \
+           df.loc[(df["Progress"] > 10) & (df["Progress"] <= 45), "Rating"].mean() * w2 / 100 + \
+           df.loc[(df["Progress"] > 45) & (df["Progress"] <= 75), "Rating"].mean() * w3 / 100 + \
+           df.loc[(df["Progress"] > 75), "Rating"].mean() * w4 / 100
+
+user_based_weighted_average(df,20,24,26,30)
+
+####################
+# Weighted Rating
+####################
+
+def course_weighted_rating(dataframe, time_w=50, user_w=50):
+    return time_based_weighted_average(dataframe) * time_w/100 + user_based_weighted_average(dataframe)*user_w/100
+
+course_weighted_rating(df)
+
+course_weighted_rating(df, time_w=40, user_w=60)
+
+
