@@ -81,7 +81,7 @@ def bayesian_average_rating(n, confidence=0.95):
     z = st.norm.ppf(1 - (1 - confidence) / 2)
     N = sum(n)
     first_part = 0.0
-    second_part = 0.0@
+    second_part = 0.0
     for k, n_k in enumerate(n):
         first_part += (k + 1) * (n[k] + 1) / (N + K)
         second_part += (k + 1) * (k + 1) * (n[k] + 1) / (N + K)
